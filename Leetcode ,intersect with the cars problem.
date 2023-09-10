@@ -1,0 +1,25 @@
+//The simple and efficient code for the problem
+// The problem was to get the points that intersect with the cars ,leet code problem
+class Solution {
+public:
+    int numberOfPoints(vector<vector<int>>& nums) {
+    int max_end = 0;
+    for (const vector<int>& car : nums) {
+        max_end = max(max_end, car[1]);
+    }
+        vector<int> num_line(max_end + 1, 0);
+    for (const vector<int>& car : nums) {
+        for (int i = car[0]; i <= car[1]; i++) {
+            num_line[i]++;
+        }
+    }
+        int covered_points = 0;
+    for (int count : num_line) {
+        if (count > 0) {
+            covered_points++;
+        }
+    }
+    
+    return covered_points;
+}
+}
