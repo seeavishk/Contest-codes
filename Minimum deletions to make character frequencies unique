@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int minDeletions(std::string s) {
+        std::unordered_map<char, int> cnt;   //ek na count bna lo so that it can store 
+        int deletions = 0;
+        std::unordered_set<int> used_frequencies;   //yaha pe used frequencies bna lo to store the frequencies of the characeter of the string
+        
+        for (char c : s) {
+            cnt[c]++;
+        }
+        
+            int freq = kv.second;   
+        for (auto& kv : cnt) {    //yaha pe kv would be used to take the integer part of the cnt so thet it could get stored 
+            while (freq > 0 && used_frequencies.find(freq) != used_frequencies.end()) {
+                freq--;
+                deletions++;
+            }
+            used_frequencies.insert(freq);
+        }
+        
+        return deletions;
+    }
+};
