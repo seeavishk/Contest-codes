@@ -1,0 +1,21 @@
+//used the map for reducing the time complexity of the same
+class Solution {
+public:
+    int findSpecialInteger(vector<int>& arr) {
+//ek na size of the array let kr lo for the 25% of the occuopancy
+int n=arr.size()*0.25;
+
+        unordered_map<int,int>m;
+        for(int i=0;i<arr.size();i++){
+//map ko add kr lo
+            m[arr[i]]++;
+        }
+        int ans;
+        for(auto it:m){
+            if(it.second>n){
+                ans=it.first;
+            }
+        }
+        return ans;
+    }
+};
