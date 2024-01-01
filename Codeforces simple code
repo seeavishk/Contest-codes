@@ -1,0 +1,11 @@
+//in this just need to find the number of dominos to get so that it could easily filled in the matrix of M*N
+#include <iostream>
+using namespace std;
+
+int main() {
+    int M, N;
+    cin >> M >> N;
+    int maxDominoes = (M * N) / 2;
+    cout << maxDominoes << endl;
+    return 0;
+}
