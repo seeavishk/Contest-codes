@@ -1,0 +1,15 @@
+//this question was all about the distribution of the cookies to children on the basis of the their greediness...
+// code would be like
+
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) {
+int n=s.size();
+if(n==0) return 0;
+sort(g.begin(),g.end())
+sort(s.begin(),s.end())
+for(int j=0;i<g.size && s.size(),j++){
+if(g[i]<=s[i]) i++;
+return i;
+}
+}
