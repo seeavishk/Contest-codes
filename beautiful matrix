@@ -1,0 +1,27 @@
+//beautiful matrix here means the matrix is consists of the zeroes but once it get the pos of one ,it needs to come at the center
+#include <iostream>
+#include <cmath>
+
+int main() {
+    int matrix[5][5];
+    int row_of_one, col_of_one;
+    
+    // Input
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 5; j++) {
+            std::cin >> matrix[i][j];
+            if (matrix[i][j] == 1) {
+                row_of_one = i;
+                col_of_one = j;
+            }
+        }
+    }
+    
+    // Calculate minimum number of moves
+    int moves = abs(2 - row_of_one) + abs(2 - col_of_one);
+    
+    // Output
+    std::cout << moves << std::endl;
+    
+    return 0;
+}
