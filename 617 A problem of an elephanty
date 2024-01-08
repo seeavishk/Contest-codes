@@ -1,0 +1,14 @@
+//in this problem there is an elephant who wanted to go to his friend house by following certain number of steps like 1,2,3,4,5
+//so we have to print out the number of steps it  will take to reach there
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x;
+    cin >> x;
+
+    int steps = (x + 4) / 5;  // Calculate the minimum number of steps needed
+    cout << steps << endl;
+
+    return 0;
+}
