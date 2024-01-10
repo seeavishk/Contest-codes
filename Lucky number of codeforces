@@ -1,0 +1,34 @@
+//this code comprises of the finding of the lucky number from the given number and the number is lucky if it only consists of 4 and 7
+#include <iostream>
+#include <string>
+using namespace std;
+
+int countLuckyDigits(long long n) {
+    int count = 0;
+    while (n > 0) {
+        if (n % 10 == 4 || n % 10 == 7) {
+            count++;
+        }
+        n /= 10;
+    }
+    return count;
+}
+
+bool isNearlyLucky(long long n) {
+    int luckyCount = countLuckyDigits(n);
+    if (luckyCount == 4 || luckyCount == 7 || luckyCount == 47 || luckyCount == 74) {
+        return true;
+    }
+    return false;
+}
+
+int main() {
+    long long n;
+    cin >> n;
+    if (isNearlyLucky(n)) {
+        cout << "YES" << endl;
+    } else {
+        cout << "NO" << endl;
+    }
+    return 0;
+}
