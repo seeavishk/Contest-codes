@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool halvesAreAlike(string s) {
+        std::unordered_set<char> vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
+        int countA = 0, countB = 0;
+        
+        for (int i = 0; i < s.length(); i++) {
+            if (vowels.count(s[i]) && i < s.length() / 2) {
+                countA++;
+            } else if (vowels.count(s[i])) {
+                countB++;
+            }
+        }
+        
+        return countA == countB;
+    }
+};
