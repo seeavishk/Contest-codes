@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+bool hasDistinctDigits(int year) {
+    std::string yearStr = std::to_string(year);
+    std::sort(yearStr.begin(), yearStr.end());
+    return std::adjacent_find(yearStr.begin(), yearStr.end()) == yearStr.end();
+}
+
+int main() {
+    int y;
+    std::cin >> y;
+
+    while (true) {
+        y++;
+        if (hasDistinctDigits(y)) {
+            std::cout << y << std::endl;
+            break;
+        }
+    }
+
+    return 0;
+}
