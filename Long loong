@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+string generateDragon(int n){
+	string dragonString="L";
+	for(int i=0; i<n; i++){
+		dragonString +="o";
+	}
+	dragonString+="ng";
+	return dragonString;
+}
+int main(){
+	int N;
+	cin>>N;
+	string result=generateDragon(N);
+    cout<<result<<endl;
+	return 0;
+}
