@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+  short t;
+  cin >> t;
+  
+  while (t--) {
+    int x, m;
+    cin >> x >> m;
+    int power = m % 4; // max cyclicity of numbers is 4
+
+    if (power == 0 and m > 0) {
+      power = 4;
+    }
+
+    long int y = 0;  
+    while (x) {
+      int digit = pow(x % 10, power);
+      digit %= 10;
+      y = y * 10 + digit;
+      x /= 10;
+    }
+    
+    if (y % 7) {
+      cout << "NO\n";
+    } else {
+      cout << "YES\n";
+    }
+  }
+  
+	return 0;
+}
