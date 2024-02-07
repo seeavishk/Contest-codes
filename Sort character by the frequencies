@@ -1,0 +1,19 @@
+class Solution {
+public:
+  string frequencySort(string s) {
+      //pehla ek map bna liya for storing the value
+    unordered_map<char, int> freqMap;
+
+    // Count the frequency of each character
+    for (char c : s) {
+        freqMap[c]++;
+    }
+
+    // Sort the characters based on their frequencies
+    sort(s.begin(), s.end(), [&](char a, char b) {
+        return freqMap[a] > freqMap[b] || (freqMap[a] == freqMap[b] && a < b);
+    });
+
+    return s;
+}
+};
