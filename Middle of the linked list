@@ -1,0 +1,35 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+ /**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+// ek ko slowly chalao aur ek koi fast jb fast waala end tk pahuchga tb tk slow middle tk
+//bss return krdo ,,,slow ko
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+     ListNode* slow=head;
+     while(head!=NULL && head->next!=NULL){
+         //simple use of the tortoise method is being used over here..
+         slow=slow->next;//ek baar bdhao
+         head=head->next->next;  //do baar bdhao...
+         
+     }
+     return slow;
+    }
+};
