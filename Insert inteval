@@ -1,0 +1,53 @@
+class Solution {
+public:
+    //3cases possible
+    // Case 1:- 
+    // ------------------   -----------------
+    // |   Interval 1   |   |   Interval 2  |
+    // ------------------   -----------------
+
+    //Case 2:-
+    // ------------------  
+    // |   Interval 1   |
+    // ------------------
+    //            ------------------  
+    //            |    Interval 2  |
+    //            ------------------
+
+    //Case 3:-
+    //  --------------------
+    //  |    Interval 1    |
+    //  --------------------
+    //     --------------
+    //     | Interval 2 |
+    //     --------------
+    vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInter) {
+        int n = intervals.size();
+        vector<vector<int>> ans;
+        int ii = 0;
+        for( int i=n-1; i>=0; i--){
+            if(newInter[0] > intervals[i][0]){
+                ii = i+1;
+                break;
+            }
+        }
+
+        intervals.push_back(newInter);
+        for(int i=(n+1)-1; i>ii; i--){
+            swap(intervals[i],intervals[i-1]);
+        }
+        //merge intervals
+        ans.push_back(intervals[0]);
+        int last;
+        for( int i=1;i<n+1;i++){
+            if(ans.back()[1]  < intervals[i][0]){ //if gap btw them
+                ans.push_back(intervals[i]);
+            }
+            else if(ans.back()[1]  >= intervals[i][0]){ //if overlapping
+                last = max(ans.back()[1],intervals[i][1]);
+                ans.back()[1] = last;
+            }
+        }
+        return ans;
+    }
+};
