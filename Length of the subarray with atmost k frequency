@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int maxSubarrayLength(vector<int>& nums, int k) {
+        int left = 0 , right = 0,ans = 0;
+
+        unordered_map<int,int> map;
+
+        while(left<nums.size() && right<nums.size()){
+            map[nums[right]]++;
+            while(map[nums[right]]>k){
+                map[nums[left]]--;  //this means to remove that column of the array i.e.nums[0]
+                left++; //move the left pointer forward
+            }
+            ans = max(ans,right-left+1);  //ye har baar loop se bahar aaayega and add up hoga
+            right++;
+        }
+        return ans;
+    }
+};
