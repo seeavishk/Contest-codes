@@ -1,0 +1,31 @@
+class Solution {
+public:
+    // This function calculates the length of the last word in a given string.
+    int lengthOfLastWord(string s) {
+        // `siz` stores the size of the input string `s`.
+        int siz = s.size();
+        // `kount` will keep track of the length of the last word.
+        int kount = 0;
+        // `flag` is a flag variable to indicate if we've encountered any non-space character yet.
+        int flag = 0;
+        
+        // Loop through the string in reverse order starting from the end.
+        for (int i = siz - 1; i >= 0; i--) {
+            // If the current character is a space and `flag` is true (meaning we've encountered a non-space character),
+            // this means we've reached the end of the last word. We can break out of the loop.
+            if (s[i] == ' ' && flag)
+                break;
+            
+            // If the current character is not a space, it's part of the last word.
+            if (s[i] != ' ') {
+                // Set `flag` to 1 to indicate that we've encountered a non-space character.
+                flag = 1;
+                // Increment `kount` to count the length of the last word.
+                kount++;
+            }
+        }
+        
+        // Finally, return the length of the last word.
+        return kount;
+    }
+};
