@@ -1,0 +1,43 @@
+#include <unordered_map>
+#include <string>
+
+class Solution {
+public:
+    bool isIsomorphic(std::string s, std::string t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        std::unordered_map<char, char> s_to_t_mapping;
+        std::unordered_map<char, char> t_to_s_mapping;
+
+        for (int i = 0; i < s.length(); ++i) {
+            char s_char = s[i];
+            char t_char = t[i];
+
+            // Check if s_to_t_mapping has a mapping for s_char
+            if (s_to_t_mapping.find(s_char) == s_to_t_mapping.end()) {
+                // If not, add the mapping
+                s_to_t_mapping[s_char] = t_char;
+            } else {
+                // If yes, check if the existing mapping is correct
+                if (s_to_t_mapping[s_char] != t_char) {
+                    return false;
+                }
+            }
+
+            // Check if t_to_s_mapping has a mapping for t_char
+            if (t_to_s_mapping.find(t_char) == t_to_s_mapping.end()) {
+                // If not, add the mapping
+                t_to_s_mapping[t_char] = s_char;
+            } else {
+                // If yes, check if the existing mapping is correct
+                if (t_to_s_mapping[t_char] != s_char) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+};
