@@ -1,0 +1,12 @@
+//just use the method of counting the brackets of the string given and just add them up to get the value required.
+class Solution {
+public:
+    int maxDepth(string s) {
+        int ans=0,p=0;
+        for(char c: s){
+            p+=(c=='(')-(c==')');
+            ans=max(ans,p);
+        }
+        return ans;
+    }
+};
