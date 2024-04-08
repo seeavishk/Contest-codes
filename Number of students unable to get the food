@@ -1,0 +1,56 @@
+//to return the value of the students who would be left after donating all the meals to each one of them
+// so if the q's front== st.top then make the set as the 0 only and when matches then use the studentcount to get return ...
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <stack>
+using namespace std;
+
+class Solution {
+public:
+    int countStudents(vector<int>& students, vector<int>& sandwiches) {
+        if (students.size() == 0 || sandwiches.size() == 0) return 0;
+        
+        queue<int> studentQueue;
+        queue<int> sandwichStack;
+        
+        for (int student : students) {
+            studentQueue.push(student);
+        }
+        
+        for (int sandwich : sandwiches) {
+            sandwichStack.push(sandwich);
+        }
+        
+        int count = 0;
+        while (!studentQueue.empty() && count < studentQueue.size()) {
+            if (studentQueue.front() == sandwichStack.front()) {
+                studentQueue.pop();
+                sandwichStack.pop();
+                count = 0;
+            } else {
+                int frontStudent = studentQueue.front();
+                studentQueue.pop();
+                studentQueue.push(frontStudent);
+                count++;
+            }
+        }
+        
+        return studentQueue.size();
+    }
+};
+
+// int main() {
+//     Solution sol;
+    
+//     vector<int> students1 = {1, 1, 0, 0};
+//     vector<int> sandwiches1 = {0, 1, 1, 0};
+//     cout << "Remaining students: " << sol.countStudents(students1, sandwiches1) << endl;
+    
+//     vector<int> students2 = {1, 1, 1, 0, 0, 1};
+//     vector<int> sandwiches2 = {1, 1, 0, 0, 1, 1};
+//     cout << "Remaining students: " << sol.countStudents(students2, sandwiches2) << endl;
+    
+//     return 0;
+// }
+// 
