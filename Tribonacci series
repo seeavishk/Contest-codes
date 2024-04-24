@@ -1,0 +1,3 @@
+//the fibonacci series extended version is this
+//solved by the help of dp
+//just returned the sum of trib(n-1)+trib(n-2)+trib(n-3)
