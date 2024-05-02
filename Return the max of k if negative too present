@@ -1,0 +1,11 @@
+ unordered_set<int> seen;
+        int maxK = -1;
+        
+        for (int num : nums) {
+            if (seen.count(-num)) {
+                maxK = max(maxK, abs(num));
+            }
+            seen.insert(num);
+        }
+        
+        return maxK;
