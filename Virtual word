@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isValid(string word) {
+        if (word.size()<3)return 0;
+        bool hv=0,hc=0;
+        int n=word.length();
+        for(int i=0;i<n;i++){
+            if((word[i]>='0' && word[i]<='9') ||
+               (word[i]>='a' && word[i]<='z') ||
+               (word[i]>='A' && word[i]<='Z')) {
+                if(word[i]>='a' && word[i]<='z'){
+                    if(word[i]=='a' || word[i]=='e' || word[i]=='o' || word[i]=='u' || word[i]=='i')hv=1;
+                    else hc=1;
+                }
+                if(word[i]>='A' && word[i]<='Z'){
+                    if(word[i]=='A' || word[i]=='E' || word[i]=='O' || word[i]=='U' || word[i]=='I')hv=1;
+                    else hc=1;
+                }
+                
+            }else return 0;
+        }
+        return hv&&hc;
+    }
+};
