@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        int n = nums.size();
+        int subarraygot = 0;
+        int sum = 0;
+        vector<int> result = {};
+        
+        // Map to store the remainder and its frequency
+        unordered_map<int, int> remainderFrequency;
+        // Initialize the remainder 0 frequency to 1
+        remainderFrequency[0] = 1;
+        
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+            
+            // Get the remainder when the sum is divided by k
+            int remainder = (sum % k + k) % k;
+            
+            // If the remainder is already in the map, increment the subarray count
+            if (remainderFrequency.find(remainder) != remainderFrequency.end()) {
+                subarraygot += remainderFrequency[remainder];
+            }
+            // Update the frequency of the current remainder
+            remainderFrequency[remainder]++;
+        }
+        
+        return subarraygot;
+    }
+};
