@@ -1,0 +1,60 @@
+class Solution {  
+public:  
+    int numMagicSquaresInside(vector<vector<int>>& grid) {  
+        int n = grid.size();  
+        if (n < 3) return 0; // A magic square must be at least 3x3  
+        int m = grid[0].size();  
+        if (m < 3) return 0; // Same condition for columns  
+        
+        int count = 0;  
+        
+        for (int i = 0; i <= n - 3; i++) {  
+            for (int j = 0; j <= m - 3; j++) {  
+                if (isMagicSquare(grid, i, j)) {  
+                    count++;  
+                }  
+            }  
+        }  
+        
+        return count;  
+    }  
+    
+private:  
+    bool isMagicSquare(const vector<vector<int>>& grid, int row, int col) {  
+        std::set<int> nums;  
+        int magicSum = 15;  
+        for (int i = 0; i < 3; ++i) {  
+            for (int j = 0; j < 3; ++j) {  
+                nums.insert(grid[row + i][col + j]);  
+            }  
+        }  
+        
+        // Check if all numbers from 1 to 9 are present  
+        if (nums.size() != 9 || nums.find(1) == nums.end() || nums.find(2) == nums.end() ||   
+            nums.find(3) == nums.end() || nums.find(4) == nums.end() ||  
+            nums.find(5) == nums.end() || nums.find(6) == nums.end() ||  
+            nums.find(7) == nums.end() || nums.find(8) == nums.end() ||  
+            nums.find(9) == nums.end()) {  
+            return false;  
+        }  
+        
+        // Check row, column, and diagonal sums  
+        for (int i = 0; i < 3; ++i) {  
+            if (grid[row + i][col] + grid[row + i][col + 1] + grid[row + i][col + 2] != magicSum) {  
+                return false;  
+            }  
+            if (grid[row][col + i] + grid[row + 1][col + i] + grid[row + 2][col + i] != magicSum) {  
+                return false;  
+            }  
+        }  
+        
+        if (grid[row][col] + grid[row + 1][col + 1] + grid[row + 2][col + 2] != magicSum) {  
+            return false;  
+        }  
+        if (grid[row][col + 2] + grid[row + 1][col + 1] + grid[row + 2][col] != magicSum) {  
+            return false;  
+        }  
+        
+        return true;  
+    }  
+};
