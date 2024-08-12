@@ -1,0 +1,22 @@
+   // Handle special cases  
+    if (n == 0) return 0;  
+    if (n == 1) return 1;  
+
+    // Start binary search between 1 and n/2  
+    long long int low = 1, high = n / 2, root = 0;  
+
+    while (low <= high) {  
+        long long int mid = (low + high) / 2;  
+        long long int midSquared = mid * mid;  
+
+        if (midSquared == n) {  
+            return mid;  // Exact square root found  
+        } else if (midSquared < n) {  
+            root = mid; // Update potential root  
+            low = mid + 1; // Search in the higher half  
+        } else {  
+            high = mid - 1; // Search in the lower half  
+        }  
+    }  
+
+    return root
