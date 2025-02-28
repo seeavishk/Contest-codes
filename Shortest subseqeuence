@@ -1,0 +1,65 @@
+class Solution {  
+public:  
+    // Function to compute the shortest common supersequence of two strings  
+    string shortestCommonSupersequence(string str1, string str2) {  
+        // Create a 2D vector dp to store lengths of longest common subsequences  
+        // dp[i][j] represents the LCS length of str1[0..i-1] and str2[0..j-1]  
+        vector<vector<int>> dp(str1.length() + 1, vector<int>(str2.length() + 1, 0));  
+
+        // Build the dp array using dynamic programming  
+        // Iterate through each character of str1 and str2  
+        for (int i = 1; i <= str1.length(); i++) {  
+            for (int j = 1; j <= str2.length(); j++) {  
+                // If characters match, increment the length of the LCS  
+                if (str1[i - 1] == str2[j - 1]) {  
+                    dp[i][j] = 1 + dp[i - 1][j - 1]; // Include this matching character  
+                } else {  
+                    // If characters don't match, take the maximum value from  
+                    // either ignoring the current character of str1 or str2  
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);  
+                }  
+            }  
+        }  
+
+        // Start building the shortest common supersequence from the end of the two strings  
+        string ans = ""; // To store the resultant SCS  
+        int i = str1.length(), j = str2.length(); // Indices to track characters in str1 and str2  
+        
+        // Traverse the dp array from the bottom-right corner to the top-left  
+        while (i > 0 && j > 0) {  
+            // If characters match, include this character in the answer  
+            if (str1[i - 1] == str2[j - 1]) {  
+                ans += str1[i - 1]; // Add to the SCS  
+                i--; // Move both indices left  
+                j--;  
+            } else {  
+                // Otherwise, add the character from the string which has the higher LCS value  
+                if (dp[i - 1][j] > dp[i][j - 1]) {  
+                    ans += str1[i - 1]; // Character from str1  
+                    i--; // Move the index of str1 left  
+                } else {  
+                    ans += str2[j - 1]; // Character from str2  
+                    j--; // Move the index of str2 left  
+                }  
+            }  
+        }  
+
+        // If there are remaining characters in str1, add them to the SCS  
+        while (i > 0) {  
+            ans += str1[i - 1]; // Add any remaining characters from str1  
+            i--;  
+        }  
+
+        // If there are remaining characters in str2, add them to the SCS  
+        while (j > 0) {  
+            ans += str2[j - 1]; // Add any remaining characters from str2  
+            j--;  
+        }  
+
+        // The SCS is built in reverse order, so we need to reverse it before returning  
+        reverse(ans.begin(), ans.end());  
+
+        // Return the resulting shortest common supersequence  
+        return ans;  
+    }  
+};
